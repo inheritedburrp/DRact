@@ -90,11 +90,11 @@
 /*!******************************************!*\
   !*** ./DR/frontend/src/actions/types.js ***!
   \******************************************/
-/*! exports provided: GET_USERS, DELETE_USER, ADD_USER */
+/*! exports provided: GET_USERS, DELETE_USER, ADD_USER, GET_ERRORS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GET_USERS\", function() { return GET_USERS; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DELETE_USER\", function() { return DELETE_USER; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ADD_USER\", function() { return ADD_USER; });\nvar GET_USERS = \"GET_USERS\";\nvar DELETE_USER = \"DELETE_USER\";\nvar ADD_USER = \"ADD_USER\";\n\n//# sourceURL=webpack:///./DR/frontend/src/actions/types.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GET_USERS\", function() { return GET_USERS; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DELETE_USER\", function() { return DELETE_USER; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ADD_USER\", function() { return ADD_USER; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"GET_ERRORS\", function() { return GET_ERRORS; });\nvar GET_USERS = \"GET_USERS\";\nvar DELETE_USER = \"DELETE_USER\";\nvar ADD_USER = \"ADD_USER\";\nvar GET_ERRORS = \"GET_ERRORS\";\n\n//# sourceURL=webpack:///./DR/frontend/src/actions/types.js?");
 
 /***/ }),
 
@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getUsers\", function() { return getUsers; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteUser\", function() { return deleteUser; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addUser\", function() { return addUser; });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ \"./DR/frontend/src/actions/types.js\");\n\n //GET USERS\n\nvar getUsers = function getUsers() {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/gens/').then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"GET_USERS\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; //DELETE USER\n\nvar deleteUser = function deleteUser(id) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a[\"delete\"](\"/api/gens/\".concat(id)).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"DELETE_USER\"],\n        payload: id\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; //ADD USERS\n\nvar addUser = function addUser(user) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/gens/', user).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"ADD_USER\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n};\n\n//# sourceURL=webpack:///./DR/frontend/src/actions/users.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getUsers\", function() { return getUsers; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteUser\", function() { return deleteUser; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addUser\", function() { return addUser; });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ \"./DR/frontend/src/actions/types.js\");\n\n //GET USERS\n\nvar getUsers = function getUsers() {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/gens/').then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"GET_USERS\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; //DELETE USER\n\nvar deleteUser = function deleteUser(id) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a[\"delete\"](\"/api/gens/\".concat(id)).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"DELETE_USER\"],\n        payload: id\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; //ADD USERS\n\nvar addUser = function addUser(user) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/gens/', user).then(function (res) {\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"ADD_USER\"],\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      var errors = {\n        msg: err.response.data,\n        status: err.response.status\n      };\n      dispatch({\n        type: _types__WEBPACK_IMPORTED_MODULE_1__[\"GET_ERRORS\"],\n        payload: errors\n      });\n    });\n  };\n};\n\n//# sourceURL=webpack:///./DR/frontend/src/actions/users.js?");
 
 /***/ }),
 
@@ -194,6 +194,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _com
 
 /***/ }),
 
+/***/ "./DR/frontend/src/reducers/errors.js":
+/*!********************************************!*\
+  !*** ./DR/frontend/src/reducers/errors.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ \"./DR/frontend/src/actions/types.js\");\n\nvar initialState = {\n  msg: {},\n  status: null\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actions_types__WEBPACK_IMPORTED_MODULE_0__[\"GET_ERRORS\"]:\n      return {\n        msg: action.payload.msg,\n        status: action.payload.status\n      };\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./DR/frontend/src/reducers/errors.js?");
+
+/***/ }),
+
 /***/ "./DR/frontend/src/reducers/index.js":
 /*!*******************************************!*\
   !*** ./DR/frontend/src/reducers/index.js ***!
@@ -202,7 +214,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _com
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users */ \"./DR/frontend/src/reducers/users.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__[\"combineReducers\"])({\n  users: _users__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n}));\n\n//# sourceURL=webpack:///./DR/frontend/src/reducers/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users */ \"./DR/frontend/src/reducers/users.js\");\n/* harmony import */ var _errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./errors */ \"./DR/frontend/src/reducers/errors.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__[\"combineReducers\"])({\n  users: _users__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  errors: _errors__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n}));\n\n//# sourceURL=webpack:///./DR/frontend/src/reducers/index.js?");
 
 /***/ }),
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_USERS, DELETE_USER, ADD_USER } from './types';
+import { GET_USERS, DELETE_USER, ADD_USER, GET_ERRORS } from './types';
 
 //GET USERS
 
@@ -34,5 +34,14 @@ export const addUser = (user) => dispatch => {
                 type: ADD_USER,
                 payload: res.data
             });
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            const errors = {
+                msg: err.response.data,
+                status: err.response.status
+            };
+            dispatch({
+                type: GET_ERRORS,
+                payload: errors
+            });
+        });
 };
