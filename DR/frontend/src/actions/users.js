@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GET_USERS, DELETE_USER, ADD_USER, GET_ERRORS } from './types';
+import { createMessage } from './messages';
 
 //GET USERS
 
@@ -18,6 +19,9 @@ export const getUsers = () => dispatch => {
 export const deleteUser = (id) => dispatch => {
     axios.delete(`/api/gens/${id}`)
         .then(res => {
+            debugger;
+            dispatch(createMessage({ deleteUser: "user deleted" }));
+
             dispatch({
                 type: DELETE_USER,
                 payload: id
