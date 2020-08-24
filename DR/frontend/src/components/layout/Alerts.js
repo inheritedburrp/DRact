@@ -30,6 +30,9 @@ export class Alerts extends Component {
             if (message.deleteUser) {
                 alert.success(message.deleteUser);
             }
+            if (message.addUser) {
+                alert.success(message.addUser);
+            }
         }
     }
 

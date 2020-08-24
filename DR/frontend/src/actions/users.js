@@ -19,7 +19,6 @@ export const getUsers = () => dispatch => {
 export const deleteUser = (id) => dispatch => {
     axios.delete(`/api/gens/${id}`)
         .then(res => {
-            debugger;
             dispatch(createMessage({ deleteUser: "user deleted" }));
 
             dispatch({
@@ -34,6 +33,7 @@ export const deleteUser = (id) => dispatch => {
 export const addUser = (user) => dispatch => {
     axios.post('/api/gens/', user)
         .then(res => {
+            dispatch(createMessage({ addUser: "user added" }));
             dispatch({
                 type: ADD_USER,
                 payload: res.data
