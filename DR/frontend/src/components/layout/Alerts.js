@@ -20,7 +20,6 @@ export class Alerts extends Component {
 
                 alert.error(`Email: ${error.msg.email.join()}`);
             }
-            debugger;
             if (error.msg.message) {
 
                 alert.error(`Message: ${error.msg.message.join()}`);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_USERS, DELETE_USER, ADD_USER, GET_ERRORS } from './types';
-import { createMessage } from './messages';
+import { createMessage, returnErrors } from './messages';
 
 //GET USERS
 
@@ -11,7 +11,7 @@ export const getUsers = () => dispatch => {
                 type: GET_USERS,
                 payload: res.data
             });
-        }).catch(err => console.log(err));
+        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 //DELETE USER
@@ -38,14 +38,5 @@ export const addUser = (user) => dispatch => {
                 type: ADD_USER,
                 payload: res.data
             });
-        }).catch(err => {
-            const errors = {
-                msg: err.response.data,
-                status: err.response.status
-            };
-            dispatch({
-                type: GET_ERRORS,
-                payload: errors
-            });
-        });
+        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
